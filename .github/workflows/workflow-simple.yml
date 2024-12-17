@@ -1,0 +1,42 @@
+
+name: the-power-workflow-simple
+on:
+  workflow_dispatch:
+  workflow_call:
+  repository_dispatch:
+    types: [custom_event_type]
+jobs:
+  the-power-actions-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lsb-release 
+        run: |
+          lsb_release -a
+
+      - name: python-version
+        run: |
+          python -V
+
+      - name: python-venv
+        run: |
+          python -m venv .venv
+
+      - name: python-venv-activate
+        run: |
+          source .venv/bin/activate
+
+      - name: pip-install-poetry
+        run: |
+          pip install poetry
+
+      - name: pip-install-mypy
+        run: |
+          pip install mypy
+  
+      - name: poetry
+        run: |
+          poetry --version
+
+      - name: mypy-version 
+        run: |
+          mypy --version
